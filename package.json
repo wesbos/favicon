@@ -1,0 +1,16 @@
+{
+  "name": "begin-app",
+  "version": "0.0.0",
+  "description": "Begin basic Hello World! app for Deno",
+  "scripts": {
+    "start": "run-s cross-env",
+    "cross-env": "cross-env NODE_ENV=testing sandbox"
+  },
+  "devDependencies": {
+    "@architect/sandbox": "latest",
+    "cross-env": "^7.0.3"
+  },
+  "dependencies": {
+    "npm-run-all": "^4.1.5"
+  }
+}

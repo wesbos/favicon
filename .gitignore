@@ -1,0 +1,4 @@
+.arc-env
+.deno_dir
+.DS_Store
+node_modules

@@ -1,2 +1,0 @@
-# favicon
-Begin app
