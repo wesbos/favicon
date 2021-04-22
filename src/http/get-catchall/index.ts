@@ -31,9 +31,8 @@ export async function handler (req: /* HttpRequest */ any) {
     }
   }
 
-  // People could (did) inject script tags here. So we just take the first 11 chars. Which I think is the length of the longest emoji? 👩‍👩‍👧‍👧
-  // We could also use dom purify, but....
-  const cleanEmoji = emoji.slice(0,11);
+  // People could (did) inject script tags here. So let's escape & and <
+  const cleanEmoji = emoji.replace(/&/g, '&amp;').replace(/</g, '&lt;');
   return {
     statusCode: 200,
     headers: {
