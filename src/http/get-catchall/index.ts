@@ -1,7 +1,7 @@
 // import { HttpRequest } from 'https://cdn.skypack.dev/@architect/functions';
 
-// Caching for 10 mins, but we should change this to 1 year once were happy
-const cache = 'max-age=600';
+// Caching for 1 min, but we should change this to 1 year once were happy
+const cache = 'max-age=60';
 
 // Types were being slow on my internet, no caching in Arc for deno?
 export async function handler (req: /* HttpRequest */ any) {
