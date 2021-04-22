@@ -2,4 +2,4 @@
 favicon
 
 @http
-get /
+get /*
