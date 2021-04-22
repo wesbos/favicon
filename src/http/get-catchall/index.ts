@@ -13,7 +13,21 @@ export async function handler (req: /* HttpRequest */ any) {
         'content-type': 'text/html; charset=UTF-8',
         'cache-control': cache
       },
-      body: `Use it like <a href="/💩">/💩</a>`
+      body: `
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+          <title>fav.farm</title>
+          <link rel="icon" href="https://fav.farm/🚜" />
+        </head>
+        <body style="font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', sans-serif; font-size: 20px;">
+          <p>Use it like <a href="/💩">/💩</a></p>
+          <code>
+            &#x3C;link rel=&#x22;icon&#x22; href="https://fav.farm/💩" /&#x3E;
+          </code>
+        </body>
+        </html>
+      `
     }
   }
 
