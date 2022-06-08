@@ -29,6 +29,7 @@ export async function handler (req: /* HttpRequest */ any) {
               &#x3C;link rel=&#x22;icon&#x22; href="https://fav.farm/${emoji}" /&#x3E;
             </code></p>
           `).join('')}
+          <p><small>Made with 🖤 by <a href="https://twitter.com/wesbos">@wesbos</a></small></p>
           <style>
             body {
               font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', sans-serif; font-size: 20px; text-align: center;
