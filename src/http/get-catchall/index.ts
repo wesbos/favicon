@@ -33,9 +33,10 @@ export async function handler (req: /* HttpRequest */ any) {
           <style>
             body {
               font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', sans-serif; font-size: 20px; text-align: center;
+              cursor: url('/🖕') 15 0, auto;
+              min-height: 100vh;
             }
             code {
-              cursor: pointer;
               background: white;
               transition: all 0.2s;
               --scale: 1;
@@ -70,6 +71,6 @@ export async function handler (req: /* HttpRequest */ any) {
       'content-type': 'image/svg+xml;',
       'cache-control': cache
     },
-    body: `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text x='0' y='14'>${cleanEmoji}</text></svg>`
+    body: `<svg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 16 16'><text x='0' y='14'>${cleanEmoji}</text></svg>`
   }
 }
