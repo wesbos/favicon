@@ -1,17 +1,7 @@
-// import { HttpRequest } from 'https://cdn.skypack.dev/@architect/functions';
+// Cache for 1 day
+const cache = `max-age=${60 * 60 * 24}`;
 
-// Caching for 1 min, but we should change this to 1 year once were happy
-const cache = 'max-age=60';
-
-const goodAssEmojis = [
-  '💩',
-  '🌶',
-  '🔥',
-  '🥰',
-  '🖥',
-  '👓'
-
-]
+const goodAssEmojis = ['💩', '🌶', '🔥', '🥰', '🖥', '👓'];
 
 // Types were being slow on my internet, no caching in Arc for deno?
 export async function handler (req: /* HttpRequest */ any) {
@@ -82,4 +72,3 @@ export async function handler (req: /* HttpRequest */ any) {
     body: `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text x='0' y='14'>${cleanEmoji}</text></svg>`
   }
 }
-
