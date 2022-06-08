@@ -3,6 +3,16 @@
 // Caching for 1 min, but we should change this to 1 year once were happy
 const cache = 'max-age=60';
 
+const goodAssEmojis = [
+  '💩',
+  '🌶',
+  '🔥',
+  '🥰',
+  '🖥',
+  '👓'
+
+]
+
 // Types were being slow on my internet, no caching in Arc for deno?
 export async function handler (req: /* HttpRequest */ any) {
   let emoji = req.pathParameters.proxy;
@@ -13,18 +23,48 @@ export async function handler (req: /* HttpRequest */ any) {
         'content-type': 'text/html; charset=UTF-8',
         'cache-control': cache
       },
-      body: `
+      body: /*html*/`
         <!DOCTYPE html>
         <html lang="en">
         <head>
           <title>fav.farm</title>
           <link rel="icon" href="https://fav.farm/🚜" />
         </head>
-        <body style="font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', sans-serif; font-size: 20px;">
+        <body>
+          <h1>I bet you need a quick favicon</h1>
+          <p>This startup returns an emoji inside an SVG<br>so you can pop that sucker into a favicon.</p>
           <p>Use it like <a href="/💩">/💩</a></p>
-          <code>
-            &#x3C;link rel=&#x22;icon&#x22; href="https://fav.farm/💩" /&#x3E;
-          </code>
+          ${goodAssEmojis.map(emoji => `
+            <p><code onClick="copyToClipboard(this)" tabIndex="0">
+              &#x3C;link rel=&#x22;icon&#x22; href="https://fav.farm/${emoji}" /&#x3E;
+            </code></p>
+          `).join('')}
+          <style>
+            body {
+              font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', sans-serif; font-size: 20px; text-align: center;
+            }
+            code {
+              cursor: pointer;
+              background: white;
+              transition: all 0.2s;
+              --scale: 1;
+              --rotate: 0;
+              transform: scale(var(--scale)) rotate(var(--rotate));
+              display: inline-block;
+            }
+            code.hl {
+              background: #f9f9ae;
+              --rotate: -1deg;
+              --scale: 1.1;
+            }
+          </style>
+          <script>
+            function copyToClipboard(codeEl) {
+              navigator.clipboard.writeText(codeEl.innerText);
+              codeEl.classList.add('hl');
+              setTimeout(() => codeEl.classList.remove('hl'), 200);
+            }
+          </script>
         </body>
         </html>
       `
