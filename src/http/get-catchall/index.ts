@@ -29,6 +29,12 @@ export async function handler (req: /* HttpRequest */ any) {
               &#x3C;link rel=&#x22;icon&#x22; href="https://fav.farm/${emoji}" /&#x3E;
             </code></p>
           `).join('')}
+          <br>
+          <p>You can use it with CSS Cursors too!</p>
+          <code style="text-align:left;">a { <br>
+            &nbsp;&nbsp;cursor: url('https://fav.farm/🖕') 15 0, auto;<br>
+          }</code>
+          <br>
           <p><small>Made with 🖤 by <a href="https://twitter.com/wesbos">@wesbos</a></small></p>
           <style>
             body {
