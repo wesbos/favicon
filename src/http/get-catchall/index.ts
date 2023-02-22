@@ -1,6 +1,4 @@
-// Cache for 1 day
-const cache = `max-age=${60 * 60 * 24}`;
-
+// Cache for 1 week
 const goodAssEmojis = ['💩', '🌶', '🔥', '🥰', '🖥', '👓'];
 
 // Types were being slow on my internet, no caching in Arc for deno?
@@ -11,7 +9,7 @@ export async function handler (req: /* HttpRequest */ any) {
       statusCode: 200,
       headers: {
         'content-type': 'text/html; charset=UTF-8',
-        'cache-control': cache
+        'cache-control': `public, max-age=${60 * 60 * 24}, s-maxage=${60 * 60 * 24}`
       },
       body: /*html*/`
         <!DOCTYPE html>
@@ -75,7 +73,7 @@ export async function handler (req: /* HttpRequest */ any) {
     statusCode: 200,
     headers: {
       'content-type': 'image/svg+xml;',
-      'cache-control': cache
+      'cache-control': `public, max-age=${60 * 60 * 24}, s-maxage=${60 * 60 * 24 * 7}`
     },
     body: `<svg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 16 16'><text x='0' y='14'>${cleanEmoji}</text></svg>`
   }
