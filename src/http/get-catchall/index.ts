@@ -28,8 +28,14 @@ export async function handler (req: /* HttpRequest */ any) {
             </code></p>
           `).join('')}
           <br>
-          <p>You can use it with CSS Cursors too!</p>
-          <code style="text-align:left;">a { <br>
+          <p>It work by serving up this SVG code: </p>
+          <p class="small">
+            <code onClick="copyToClipboard(this)" tabIndex="0">
+&#x3C;link rel=&#x22;icon&#x22; href="data:image/svg+xml,&lt;svg xmlns=&#39;http://www.w3.org/2000/svg&#39; width=&#39;48&#39; height=&#39;48&#39; viewBox=&#39;0 0 16 16&#39;&gt;&lt;text x=&#39;0&#39; y=&#39;14&#39;&gt;😽&lt;/text&gt;&lt;/svg&gt;" /&#x3E;
+            </code>
+          </p>
+          <p >You can use it with CSS Cursors too!</p>
+          <code style="text-align:left;" onClick="copyToClipboard(this)" tabIndex="0">a { <br>
             &nbsp;&nbsp;cursor: url('https://fav.farm/🖕') 15 0, auto;<br>
           }</code>
           <br>
@@ -52,6 +58,15 @@ export async function handler (req: /* HttpRequest */ any) {
               background: #f9f9ae;
               --rotate: -1deg;
               --scale: 1.1;
+            }
+            p {
+              max-width: 600px;
+              margin: 0 auto;
+              line-height: 2;
+              margin-bottom: 20px;
+            }
+            p.small {
+              font-size: 13px;
             }
           </style>
           <script>
