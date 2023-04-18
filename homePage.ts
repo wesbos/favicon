@@ -34,7 +34,7 @@ export function makeHomePage() {
           <style>
             body {
               font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', sans-serif; font-size: 20px; text-align: center;
-              cursor: url('/🖕') 15 0, auto;
+              cursor: url('/🖕?svg') 15 0, auto;
               min-height: 100vh;
             }
             code {

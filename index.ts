@@ -39,8 +39,10 @@ export default async function handler(request: Request): Response {
       },
     });
   }
+
   // Safari doesn't support SVG fonts, so we need to make a PNG
-  if (request.headers.get("user-agent")?.includes("Safari")) {
+  const forceSvg = url.search.includes('svg'); // ?svg tacked on the end forces SVG, handy for css cursors
+  if (!forceSvg && request.headers.get("user-agent")?.includes("Safari")) {
     return handlerSafari(request);
   }
 
