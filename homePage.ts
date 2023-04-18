@@ -1,19 +1,6 @@
-// Cache for 1 week
 const goodAssEmojis = ["💩", "🌶", "🔥", "🥰", "🖥", "👓"];
-
-// Types were being slow on my internet, no caching in Arc for deno?
-export async function handler(req: /* HttpRequest */ any) {
-  let emoji = req.pathParameters.proxy;
-  if (!emoji) {
-    return {
-      statusCode: 200,
-      headers: {
-        "content-type": "text/html; charset=UTF-8",
-        "cache-control": `public, max-age=${60 * 60 * 24}, s-maxage=${
-          60 * 60 * 24
-        }`,
-      },
-      body: /*html*/ `
+export function makeHomePage() {
+  return /*html*/ `
         <!DOCTYPE html>
         <html lang="en">
         <head>
@@ -25,12 +12,12 @@ export async function handler(req: /* HttpRequest */ any) {
           <p>This startup returns an emoji inside an SVG<br>so you can pop that sucker into a favicon.</p>
           <p>Use it like <a href="/💩">/💩</a></p>
           ${
-        goodAssEmojis.map((emoji) => `
+    goodAssEmojis.map((emoji) => `
             <p><code onClick="copyToClipboard(this)" tabIndex="0">
               &#x3C;link rel=&#x22;icon&#x22; href="https://fav.farm/${emoji}" /&#x3E;
             </code></p>
           `).join("")
-      }
+  }
           <br>
           <p>It works by serving up this SVG code: </p>
           <p class="small">
@@ -82,21 +69,5 @@ export async function handler(req: /* HttpRequest */ any) {
           </script>
         </body>
         </html>
-      `,
-    };
-  }
-
-  // People could (did) inject script tags here. So let's escape & and <
-  const cleanEmoji = emoji.replace(/&/g, "&amp;").replace(/</g, "&lt;");
-  return {
-    statusCode: 200,
-    headers: {
-      "content-type": "image/svg+xml;",
-      "cache-control": `public, max-age=${60 * 60 * 24}, s-maxage=${
-        60 * 60 * 24 * 7
-      }`,
-    },
-    body:
-      `<svg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 16 16'><text x='0' y='14'>${cleanEmoji}</text></svg>`,
-  };
+      `;
 }
