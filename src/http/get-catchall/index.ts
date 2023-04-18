@@ -28,7 +28,7 @@ export async function handler (req: /* HttpRequest */ any) {
             </code></p>
           `).join('')}
           <br>
-          <p>It work by serving up this SVG code: </p>
+          <p>It works by serving up this SVG code: </p>
           <p class="small">
             <code onClick="copyToClipboard(this)" tabIndex="0">
 &#x3C;link rel=&#x22;icon&#x22; href="data:image/svg+xml,&lt;svg xmlns=&#39;http://www.w3.org/2000/svg&#39; width=&#39;48&#39; height=&#39;48&#39; viewBox=&#39;0 0 16 16&#39;&gt;&lt;text x=&#39;0&#39; y=&#39;14&#39;&gt;😽&lt;/text&gt;&lt;/svg&gt;" /&#x3E;
