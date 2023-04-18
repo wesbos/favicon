@@ -5,7 +5,7 @@ export function makeHomePage() {
         <html lang="en">
         <head>
           <title>fav.farm</title>
-          <link rel="icon" href="https://fav.farm/🚜" />
+          <link rel="icon" href="/🚜" />
         </head>
         <body>
           <h1>I bet you need a quick favicon</h1>
