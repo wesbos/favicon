@@ -1,7 +1,6 @@
 {
   "importMap": "./import_map.json",
   "tasks": {
-    // Dev Script
     "dev": "deno run --watch --allow-read --allow-net index.ts"
   }
 }

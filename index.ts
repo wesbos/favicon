@@ -1,5 +1,5 @@
-import { createCanvas } from "canvas";
-import { serve } from "server";
+import { createCanvas } from "https://deno.land/x/canvas@v1.4.1/mod.ts";
+import { serve } from "https://deno.land/std@0.180.0/http/server.ts";
 const port = 8080;
 const font = await Deno.readFile("NotoColorEmoji.ttf");
 
@@ -13,11 +13,10 @@ function makePng(emoji: string): Uint8Array {
   return png;
 }
 
-export default async function handler(request: Request): Promise<Response> {
+export default function handler(request: Request): Response {
   const url = new URL(request.url);
   const emoji = decodeURIComponent(url.pathname.replace('/', ''));
-  console.log(emoji);
-  const png = makePng(emoji);
+  const png = makePng(emoji || '💩');
   return new Response(png, { status: 200, headers: { "Content-Type": "image/png" } });
 }
 
