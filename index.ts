@@ -2,9 +2,9 @@ import { createCanvas } from "https://deno.land/x/canvas@v1.4.1/mod.ts";
 import { serve } from "https://deno.land/std@0.180.0/http/server.ts";
 import { makeHomePage } from "./homePage.ts";
 const port = 8080;
-const font = await Deno.readFile("NotoColorEmoji.ttf");
+const font = await Deno.readFile("./NotoColorEmoji.ttf");
 
-function makePng(emoji: string): Uint8Array {
+export function makePng(emoji: string): Uint8Array {
   const canvas = createCanvas(128, 128);
   const ctx = canvas.getContext("2d");
   canvas.loadFont(font, { family: "Noto Color Emoji" });
@@ -24,7 +24,7 @@ export function handlerSafari(request: Request): Response {
   });
 }
 
-export default async function handler(request: Request): Response {
+export function handler(request: Request): Response {
   const url = new URL(request.url);
   const emoji = decodeURIComponent(url.pathname.replace("/", ""));
 

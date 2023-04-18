@@ -8,7 +8,7 @@ export function makeHomePage() {
           <link rel="icon" href="/🚜" />
         </head>
         <body>
-          <h1>I bet you need a quick faviconx</h1>
+          <h1>I bet you need a quick favicon</h1>
           <p>This startup returns an emoji inside an SVG<br>so you can pop that sucker into a favicon.</p>
           <p>Use it like <a href="/💩">/💩</a></p>
           ${

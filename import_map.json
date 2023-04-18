@@ -1,6 +1,0 @@
-{
-  "imports": {
-    "canvas": "https://deno.land/x/canvas@v1.4.1/mod.ts",
-    "server": "https://deno.land/std@0.180.0/http/server.ts"
-  }
-}

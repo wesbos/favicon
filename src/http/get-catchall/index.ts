@@ -1,8 +1,9 @@
 // Cache for 1 week
 const goodAssEmojis = ["💩", "🌶", "🔥", "🥰", "🖥", "👓"];
+export { handler } from '../../../index.ts';
 
 // Types were being slow on my internet, no caching in Arc for deno?
-export async function handler(req: /* HttpRequest */ any) {
+export async function handlerxxx(req: /* HttpRequest */ any) {
   let emoji = req.pathParameters.proxy;
   if (!emoji) {
     return {
