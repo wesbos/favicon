@@ -42,7 +42,7 @@ export function handler(request: Request): Response {
 
   // Safari doesn't support SVG fonts, so we need to make a PNG
   const forceSvg = url.search.includes('svg'); // ?svg tacked on the end forces SVG, handy for css cursors
-  if (!forceSvg && request.headers.get("user-agent")?.includes("Safari")) {
+  if (!forceSvg && request.headers.get("user-agent")?.includes("Safari") && !request.headers.get("user-agent")?.includes("Chrome")) {
     return handlerSafari(request);
   }
 
