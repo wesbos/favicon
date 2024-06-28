@@ -30,7 +30,13 @@ export function makeHomePage() {
             &nbsp;&nbsp;cursor: url('https://fav.farm/🖕') 15 0, auto;<br>
           }</code>
           <br>
-          <p><small>Made with 🖤 by <a href="https://twitter.com/wesbos">@wesbos</a></small></p>
+          <p><small>Made with 🖤 by <a href="https://twitter.com/wesbos">@wesbos</a>
+            -
+            <a href="https://github.com/wesbos/favicon">
+              source 👩‍💻
+            </a>
+            </small>
+          </p>
           <style>
             body {
               font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', sans-serif; font-size: 20px; text-align: center;
