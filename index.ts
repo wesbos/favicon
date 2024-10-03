@@ -27,7 +27,7 @@ export function handlerSafari(request: Request): Response {
 export function handler(request: Request): Response {
   const url = new URL(request.url);
   const emoji = decodeURIComponent(url.pathname.replace("/", ""));
-
+  console.log('hi');
   if (!emoji) {
     return new Response(makeHomePage(), {
       status: 200,
