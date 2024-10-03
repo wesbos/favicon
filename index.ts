@@ -26,6 +26,7 @@ export function handlerSafari(request: Request): Response {
 
 export function handler(request: Request): Response {
   const url = new URL(request.url);
+  console.log(request.headers.get('referer'));
   const emoji = decodeURIComponent(url.pathname.replace("/", ""));
   if (!emoji) {
     return new Response(makeHomePage(), {
