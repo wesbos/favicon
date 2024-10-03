@@ -4,7 +4,7 @@ export function makeHomePage() {
         <!DOCTYPE html>
         <html lang="en">
         <head>
-          <title>fav.farm</title>
+          <title>Emoji as Favicon - fav.farm</title>
           <link rel="icon" href="/🚜" />
         </head>
         <body>
