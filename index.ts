@@ -1,4 +1,4 @@
-import { createCanvas } from "https://deno.land/x/canvas@v1.4.1/mod.ts";
+import { createCanvas } from "https://deno.land/x/canvas@v1.4.2/mod.ts";
 import { serve } from "https://deno.land/std@0.180.0/http/server.ts";
 import { makeHomePage } from "./homePage.ts";
 const port = 8080;
@@ -27,7 +27,6 @@ export function handlerSafari(request: Request): Response {
 export function handler(request: Request): Response {
   const url = new URL(request.url);
   const emoji = decodeURIComponent(url.pathname.replace("/", ""));
-  console.log('hi');
   if (!emoji) {
     return new Response(makeHomePage(), {
       status: 200,
