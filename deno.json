@@ -1,5 +1,5 @@
 {
   "tasks": {
-    "dev": "deno run --watch --allow-read --allow-net index.ts"
+    "dev": "deno run --unstable-kv --watch --allow-read --allow-net index.ts"
   }
 }

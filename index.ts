@@ -1,6 +1,7 @@
 import { createCanvas } from "https://deno.land/x/canvas@v1.4.2/mod.ts";
 import { serve } from "https://deno.land/std@0.180.0/http/server.ts";
 import { makeHomePage } from "./homePage.ts";
+import { incrementCount } from "./db.ts";
 const port = 8080;
 const font = await Deno.readFile("./NotoColorEmoji.ttf");
 
@@ -14,9 +15,17 @@ export function makePng(emoji: string): Uint8Array {
   return png;
 }
 
+
+function getEmojiFromPathname(pathname: string): string {
+  const emoji =  decodeURIComponent(pathname.replace("/", ""));
+  if(emoji === "favicon.ico") {
+    return "🚜";
+  }
+  return emoji;
+}
 export function handlerSafari(request: Request): Response {
   const url = new URL(request.url);
-  const emoji = decodeURIComponent(url.pathname.replace("/", ""));
+  const emoji = getEmojiFromPathname(url.pathname);
   const png = makePng(emoji || "💩");
   return new Response(png, {
     status: 200,
@@ -24,11 +33,11 @@ export function handlerSafari(request: Request): Response {
   });
 }
 
-export function handler(request: Request): Response {
+export async function handler(request: Request): Response {
   const url = new URL(request.url);
-  const emoji = decodeURIComponent(url.pathname.replace("/", ""));
+  const emoji = getEmojiFromPathname(url.pathname);
   if (!emoji) {
-    return new Response(makeHomePage(), {
+    return new Response(await makeHomePage(), {
       status: 200,
       headers: {
         "content-type": "text/html; charset=UTF-8",
@@ -39,14 +48,18 @@ export function handler(request: Request): Response {
     });
   }
 
+  // People could (did) inject script tags here. So let's escape & and <
+  const cleanEmoji = emoji.replace(/&/g, "&amp;").replace(/</g, "&lt;");
+
+  // Emoji Telemetry
+  incrementCount(cleanEmoji);
   // Safari doesn't support SVG fonts, so we need to make a PNG
   const forceSvg = url.search.includes('svg'); // ?svg tacked on the end forces SVG, handy for css cursors
   if (!forceSvg && request.headers.get("user-agent")?.includes("Safari") && !request.headers.get("user-agent")?.includes("Chrome")) {
     return handlerSafari(request);
   }
 
-  // People could (did) inject script tags here. So let's escape & and <
-  const cleanEmoji = emoji.replace(/&/g, "&amp;").replace(/</g, "&lt;");
+
   return new Response(`<svg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 16 16'><text x='0' y='14'>${cleanEmoji}</text></svg>`, {
     status: 200,
     headers: {

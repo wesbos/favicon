@@ -1,5 +1,7 @@
+import { getEmojiCounts } from './db.ts';
 const goodAssEmojis = ["💩", "🌶", "🔥", "🥰", "🖥", "👓"];
-export function makeHomePage() {
+export async function makeHomePage() {
+  const counts = await getEmojiCounts();
   return /*html*/ `
         <!DOCTYPE html>
         <html lang="en">
@@ -29,7 +31,16 @@ export function makeHomePage() {
           <code style="text-align:left;" onClick="copyToClipboard(this)" tabIndex="0">a { <br>
             &nbsp;&nbsp;cursor: url('https://fav.farm/🖕') 15 0, auto;<br>
           }</code>
+
+          <p>Stats!</p>
+          <div class="stats">
+          ${counts.map(([emoji, count]) => `<div class="stat">
+              <a href="/${emoji}"><span>${emoji} ${count}</span></a>
+            </div>`).join("")}
+          </div>
           <br>
+
+
           <p><small>Made with 🖤 by <a href="https://twitter.com/wesbos">@wesbos</a>
             -
             <a href="https://github.com/wesbos/favicon">
@@ -64,6 +75,20 @@ export function makeHomePage() {
             }
             p.small {
               font-size: 13px;
+            }
+            .stats {
+              display: flex;
+              justify-content: center;
+              flex-wrap: wrap;
+              gap: 20px;
+              max-width: 800px;
+              margin: 20px;
+            }
+            .stat {
+              background: #f1f1f1;
+              padding: 5px 10px;
+              border-radius: 10px;
+
             }
           </style>
           <script>
