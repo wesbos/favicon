@@ -3,12 +3,7 @@ export const db = await Deno.openKv();
 export async function incrementCount(emoji: string) {
   const VIEW_KEY = [`favicon`, `${emoji}`];
   // also Update + query via Deno KV
-  await db.atomic().sum(VIEW_KEY, 1n).commit(); // Increment KV by 1
-  const res = await db.get<Deno.KvU64>(VIEW_KEY);
-  const denoKVCount = res.value?.value || 0n;
-  return {
-    denoKVCount,
-  };
+  return db.atomic().sum(VIEW_KEY, 1n).commit(); // Increment KV by 1
 }
 
 export async function getEmojiCounts() {

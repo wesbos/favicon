@@ -75,7 +75,7 @@ export async function makeHomePage() {
               --scale: 1.1;
             }
             a {
-              cursor: url('/👌?svg') 15 0, auto;
+              cursor: url('/👌?svg') 25 25, auto;
             }
             p {
               max-width: 600px;
