@@ -3,6 +3,7 @@
   "packages": {
     "specifiers": {
       "npm:emoji-from-text": "npm:emoji-from-text@1.1.12",
+      "npm:emoji-regex": "npm:emoji-regex@10.3.0",
       "npm:emoji-regex-xs": "npm:emoji-regex-xs@1.0.0"
     },
     "npm": {
@@ -41,6 +42,10 @@
       },
       "emoji-regex-xs@1.0.0": {
         "integrity": "sha512-LRlerrMYoIDrT6jgpeZ2YYl/L8EulRTt5hQcYjy5AInh7HWXKimpqx68aknBFpGL2+/IcogTcaydJEgaTmOpDg==",
+        "dependencies": {}
+      },
+      "emoji-regex@10.3.0": {
+        "integrity": "sha512-QpLs9D9v9kArv4lfDEgg1X/gN5XLnf/A6l9cs8SPZLRZR3ZkY9+kwIQTxm+fsSej5UMYGE8fdoaZVIBlqG0XTw==",
         "dependencies": {}
       },
       "emojilib@1.1.0": {

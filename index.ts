@@ -1,9 +1,9 @@
 import { createCanvas } from "https://deno.land/x/canvas@v1.4.2/mod.ts";
 import { serve } from "https://deno.land/std@0.180.0/http/server.ts";
-import emojiRegex from 'npm:emoji-regex-xs';
+import emojiRegex from 'npm:emoji-regex';
 import emojiFromText from 'npm:emoji-from-text';
 import { makeHomePage } from "./homePage.ts";
-import { incrementCount } from "./db.ts";
+import { db, incrementCount, getEmojiCounts } from "./db.ts";
 const port = 8080;
 const font = await Deno.readFile("./NotoColorEmoji.ttf");
 

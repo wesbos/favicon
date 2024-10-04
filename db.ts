@@ -1,4 +1,4 @@
-const db = await Deno.openKv();
+export const db = await Deno.openKv();
 
 export async function incrementCount(emoji: string) {
   await db.delete(["favicon"]);
