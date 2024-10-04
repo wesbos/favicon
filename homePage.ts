@@ -34,7 +34,6 @@ export async function makeHomePage() {
           <code style="text-align:left;" onClick="copyToClipboard(this)" tabIndex="0">a { <br>
             &nbsp;&nbsp;cursor: url('https://fav.farm/🖕') 15 0, auto;<br>
           }</code>
-
           <p><strong>${formatter.format(totalCount)}</strong> Emoji Favicons Served!
           <br>
           <small>(since I started counting Oct 3, 2024)</small>
