@@ -82,7 +82,7 @@ export async function makeHomePage() {
               flex-wrap: wrap;
               gap: 20px;
               max-width: 800px;
-              margin: 20px;
+              margin: 20px auto;
             }
             .stat {
               background: #f1f1f1;
