@@ -88,13 +88,14 @@ export async function makeHomePage() {
               display: flex;
               justify-content: center;
               flex-wrap: wrap;
-              gap: 20px;
+              gap: 5px;
               max-width: 800px;
               margin: 20px auto;
             }
             .stat {
               background: #f1f1f1;
-              padding: 5px 10px;
+              padding: 4px 4px;
+              line-height: 1;
               border-radius: 10px;
 
             }
