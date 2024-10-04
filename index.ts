@@ -56,18 +56,15 @@ export async function handler(request: Request): Response {
     });
   }
   const emoji = getEmojiFromPathname(url.pathname);
-  // People could (did) inject script tags here. So let's escape & and <
-  const cleanEmoji = emoji.replace(/&/g, "&amp;").replace(/</g, "&lt;");
-
   // Emoji Telemetry
-  incrementCount(cleanEmoji);
+  incrementCount(emoji);
   // Safari doesn't support SVG fonts, so we need to make a PNG
   const forceSvg = url.search.includes('svg'); // ?svg tacked on the end forces SVG, handy for css cursors
   if (!forceSvg && request.headers.get("user-agent")?.includes("Safari") && !request.headers.get("user-agent")?.includes("Chrome")) {
     return handlerSafari(request);
   }
 
-  return new Response(`<svg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 16 16'><text x='0' y='14'>${cleanEmoji}</text></svg>`, {
+  return new Response(`<svg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 16 16'><text x='0' y='14'>${emoji}</text></svg>`, {
     status: 200,
     headers: {
       "content-type": `image/svg+xml;`,
