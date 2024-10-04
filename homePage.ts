@@ -3,8 +3,7 @@ import { getEmojiCounts } from './db.ts';
 const goodAssEmojis = ["💩", "🌶", "🔥", "🥰", "🖥", "👓"];
 const formatter = new Intl.NumberFormat("en-US");
 export async function makeHomePage() {
-  const counts = await getEmojiCounts();
-  const totalCount = counts.reduce((acc, [_, count]) => acc + count, 0);
+  const { topEmojis, countryEmojis, totalCount } = await getEmojiCounts();
   return /*html*/ `
         <!DOCTYPE html>
         <html lang="en">
@@ -39,11 +38,17 @@ export async function makeHomePage() {
           <small>(since I started counting Oct 3, 2024)</small>
         </p>
           <div class="stats">
-          ${counts.map(([emoji, count]) => `<div class="stat">
+          ${topEmojis.map(([emoji, count]) => `<div class="stat">
               <a href="/${emoji}"><span>${emoji} ${formatter.format(count)}</span></a>
             </div>`).join("")}
           </div>
           <br>
+          <p>Top Country Emojis used <br><small>(you guys are so silly gaming these numbers)</small></p>
+          <div class="stats">
+          ${countryEmojis.map(([emoji, count]) => `<div class="stat">
+              <a href="/${emoji}"><span>${emoji} ${formatter.format(count)}</span></a>
+            </div>`).join("")}
+          </div>
 
 
           <p><small>Made with 🖤 by <a href="https://x.com/wesbos">@wesbos</a>

@@ -13,5 +13,16 @@ export async function getEmojiCounts() {
     emojis.push([count.key[1], Number(count.value)]);
   }
   emojis.sort((a, b) => b[1] - a[1]);
-  return emojis;
+
+  const totalCount = emojis.reduce((acc, [_, count]) => acc + count, 0);
+  // Filter out country flags
+  const [topEmojis, countryEmojis] = emojis.reduce((acc, [emoji, count]) => {
+    if (emoji.match(/[🇦-🇿]{2}/u)) {
+      acc[1].push([emoji, count]);
+    } else {
+      acc[0].push([emoji, count]);
+    }
+    return acc;
+  }, [[], []]);
+  return { topEmojis, countryEmojis, totalCount };
 }
