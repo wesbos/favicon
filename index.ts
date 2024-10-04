@@ -1,9 +1,8 @@
 import { createCanvas } from "https://deno.land/x/canvas@v1.4.2/mod.ts";
-import { serve } from "https://deno.land/std@0.180.0/http/server.ts";
 import emojiRegex from 'npm:emoji-regex';
 import emojiFromText from 'npm:emoji-from-text';
 import { makeHomePage } from "./homePage.ts";
-import { db, incrementCount, getEmojiCounts } from "./db.ts";
+import { incrementCount } from "./db.ts";
 const port = 8080;
 const font = await Deno.readFile("./NotoColorEmoji.ttf");
 
@@ -18,17 +17,17 @@ export function makePng(emoji: string): Uint8Array {
 }
 
 function getEmojiFromPathname(pathname: string): string {
-  const maybeEmojiPath =  decodeURIComponent(pathname.replace("/", ""));
+  const maybeEmojiPath = decodeURIComponent(pathname.replace("/", ""));
   if (maybeEmojiPath === 'favicon.ico') return "🚜";
   const emojis = maybeEmojiPath.match(emojiRegex());
   // If there are multiple emojis, just use the first one
-  if(emojis?.length) {
+  if (emojis?.length) {
     return emojis[0];
   }
   // If there is a word, try to find an emoji in it
   const textMatch = emojiFromText(maybeEmojiPath, true);
   const maybeEmoji = textMatch?.match?.emoji?.char;
-  if(maybeEmoji) {
+  if (maybeEmoji) {
     return maybeEmoji;
   }
   // If there are no emojis, return a tractor
@@ -51,13 +50,11 @@ export async function handler(request: Request): Response {
       status: 200,
       headers: {
         "content-type": "text/html; charset=UTF-8",
-        "cache-control": `public, max-age=${60 * 60 * 24}, s-maxage=${
-          60 * 60 * 24
-        }`,
+        "cache-control": `public, max-age=${60 * 60 * 24}, s-maxage=${60 * 60 * 24
+          }`,
       },
     });
   }
-
   const emoji = getEmojiFromPathname(url.pathname);
   // People could (did) inject script tags here. So let's escape & and <
   const cleanEmoji = emoji.replace(/&/g, "&amp;").replace(/</g, "&lt;");
@@ -70,17 +67,13 @@ export async function handler(request: Request): Response {
     return handlerSafari(request);
   }
 
-
   return new Response(`<svg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 16 16'><text x='0' y='14'>${cleanEmoji}</text></svg>`, {
     status: 200,
     headers: {
       "content-type": `image/svg+xml;`,
-      "cache-control": `public, max-age=${60 * 60 * 24}, s-maxage=${
-        60 * 60 * 24 * 7
-      }`,
+      "cache-control": `public, max-age=${60 * 60 * 24}, s-maxage=${60 * 60 * 24 * 7
+        }`,
     }
   });
 }
-
-console.log(`HTTP webserver running. Access it at: http://localhost:8080/`);
-await serve(handler, { port });
+Deno.serve({ port }, handler);

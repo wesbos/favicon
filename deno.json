@@ -1,5 +1,10 @@
 {
   "tasks": {
     "dev": "deno run --env --unstable-kv --watch --allow-read --allow-net --allow-env index.ts"
+  },
+  "imports": {
+    "@std/http": "jsr:@std/http@^1.0.7",
+    "emoji-from-text": "npm:emoji-from-text@^1.1.12",
+    "emoji-regex": "npm:emoji-regex@^10.4.0"
   }
 }
