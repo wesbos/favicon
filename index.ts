@@ -1,5 +1,7 @@
 import { createCanvas } from "https://deno.land/x/canvas@v1.4.2/mod.ts";
 import { serve } from "https://deno.land/std@0.180.0/http/server.ts";
+import emojiRegex from 'npm:emoji-regex-xs';
+import emojiFromText from 'npm:emoji-from-text';
 import { makeHomePage } from "./homePage.ts";
 import { incrementCount } from "./db.ts";
 const port = 8080;
@@ -15,13 +17,21 @@ export function makePng(emoji: string): Uint8Array {
   return png;
 }
 
-
 function getEmojiFromPathname(pathname: string): string {
-  const emoji =  decodeURIComponent(pathname.replace("/", ""));
-  if(emoji === "favicon.ico") {
-    return "🚜";
+  const maybeEmojiPath =  decodeURIComponent(pathname.replace("/", ""));
+  const emojis = maybeEmojiPath.match(emojiRegex());
+  // If there are multiple emojis, just use the first one
+  if(emojis?.length) {
+    return emojis[0];
   }
-  return emoji;
+  // If there is a word, try to find an emoji in it
+  const textMatch = emojiFromText(maybeEmojiPath, true);
+  const maybeEmoji = textMatch?.match?.emoji?.char;
+  if(maybeEmoji) {
+    return maybeEmoji;
+  }
+  // If there are no emojis, return a tractor
+  return "🚜";
 }
 export function handlerSafari(request: Request): Response {
   const url = new URL(request.url);
@@ -35,8 +45,7 @@ export function handlerSafari(request: Request): Response {
 
 export async function handler(request: Request): Response {
   const url = new URL(request.url);
-  const emoji = getEmojiFromPathname(url.pathname);
-  if (!emoji) {
+  if (url.pathname === "/") {
     return new Response(await makeHomePage(), {
       status: 200,
       headers: {
@@ -48,6 +57,7 @@ export async function handler(request: Request): Response {
     });
   }
 
+  const emoji = getEmojiFromPathname(url.pathname);
   // People could (did) inject script tags here. So let's escape & and <
   const cleanEmoji = emoji.replace(/&/g, "&amp;").replace(/</g, "&lt;");
 

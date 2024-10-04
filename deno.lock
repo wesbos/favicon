@@ -1,5 +1,84 @@
 {
   "version": "3",
+  "packages": {
+    "specifiers": {
+      "npm:emoji-from-text": "npm:emoji-from-text@1.1.12",
+      "npm:emoji-regex-xs": "npm:emoji-regex-xs@1.0.0"
+    },
+    "npm": {
+      "count-words-array@1.0.13": {
+        "integrity": "sha512-JuKzjvlvfUkFFsxnn8Wos+mlAYYhtInG2yDdtV3gtnDn67k0GmDX4VT6DwX/ovAaSYg3ByDIGN8t38/HeA3feg==",
+        "dependencies": {
+          "count-words": "count-words@1.0.13"
+        }
+      },
+      "count-words@1.0.13": {
+        "integrity": "sha512-udGVdXlyQAVcWXozUMSZ4GAbEpxHqvMVBeDDEYUuaDwCyz72XugSn3it1tWu/4pv+kY8PnC0OwzsZI3tCijuVQ==",
+        "dependencies": {
+          "set-or-get": "set-or-get@1.2.11",
+          "worder": "worder@1.1.1"
+        }
+      },
+      "deffy@2.2.4": {
+        "integrity": "sha512-pLc9lsbsWjr6RxmJ2OLyvm+9l4j1yK69h+TML/gUit/t3vTijpkNGh8LioaJYTGO7F25m6HZndADcUOo2PsiUg==",
+        "dependencies": {
+          "typpy": "typpy@2.3.13"
+        }
+      },
+      "emoji-from-text@1.1.12": {
+        "integrity": "sha512-z6+JGhFUak5xuztOdUnfSUS/TP83igYOpNTi1pYCZbO2GFOQkQiHYGuSsNntQD/TPWUkvu+g7IV3USqUX+pmOw==",
+        "dependencies": {
+          "count-words-array": "count-words-array@1.0.13",
+          "emoji-from-word": "emoji-from-word@1.2.12"
+        }
+      },
+      "emoji-from-word@1.2.12": {
+        "integrity": "sha512-xNIl/NflPD46iqbGyVj8U56rYW4i021rNHDYxEE3PSrnMpGxp9NxxedRqGsL1ol8z8taHF27TB9+mRbSFHSx5Q==",
+        "dependencies": {
+          "emojilib": "emojilib@1.1.0",
+          "iterate-object": "iterate-object@1.3.4"
+        }
+      },
+      "emoji-regex-xs@1.0.0": {
+        "integrity": "sha512-LRlerrMYoIDrT6jgpeZ2YYl/L8EulRTt5hQcYjy5AInh7HWXKimpqx68aknBFpGL2+/IcogTcaydJEgaTmOpDg==",
+        "dependencies": {}
+      },
+      "emojilib@1.1.0": {
+        "integrity": "sha512-OItSVrbYs38A8cbssqny5xH9qsyTzJ+vcTUjgwowlugmLOmOCceVMAraNcEle/6PuqI8J+wS70MzbbWRfW1cIQ==",
+        "dependencies": {}
+      },
+      "function.name@1.0.13": {
+        "integrity": "sha512-mVrqdoy5npWZyoXl4DxCeuVF6delDcQjVS9aPdvLYlBxtMTZDR2B5GVEQEoM1jJyspCqg3C0v4ABkLE7tp9xFA==",
+        "dependencies": {
+          "noop6": "noop6@1.0.9"
+        }
+      },
+      "iterate-object@1.3.4": {
+        "integrity": "sha512-4dG1D1x/7g8PwHS9aK6QV5V94+ZvyP4+d19qDv43EzImmrndysIl4prmJ1hWWIGCqrZHyaHBm6BSEWHOLnpoNw==",
+        "dependencies": {}
+      },
+      "noop6@1.0.9": {
+        "integrity": "sha512-DB3Hwyd89dPr5HqEPg3YHjzvwh/mCqizC1zZ8vyofqc+TQRyPDnT4wgXXbLGF4z9YAzwwTLi8pNLhGqcbSjgkA==",
+        "dependencies": {}
+      },
+      "set-or-get@1.2.11": {
+        "integrity": "sha512-CrJL6W4xE76UlRVfpKqp3HqSAZ2CV3Mi7UHYmi8yGeajwOAoc/YpJy+8Fvvtm4eJiPb0PoilKI84KAQoo8TZYQ==",
+        "dependencies": {
+          "deffy": "deffy@2.2.4"
+        }
+      },
+      "typpy@2.3.13": {
+        "integrity": "sha512-vOxIcQz9sxHi+rT09SJ5aDgVgrPppQjwnnayTrMye1ODaU8gIZTDM19t9TxmEElbMihx2Nq/0/b/MtyKfayRqA==",
+        "dependencies": {
+          "function.name": "function.name@1.0.13"
+        }
+      },
+      "worder@1.1.1": {
+        "integrity": "sha512-wul/ncEBQk01Dc8gqHsNkMeV7YvahUSRuXm60g+pbezuWskPy/CQZtAxmi6j+GWzTCQYjW8EvbVilpIBbm4gvA==",
+        "dependencies": {}
+      }
+    }
+  },
   "remote": {
     "https://deno.land/std@0.106.0/encoding/base64.ts": "eecae390f1f1d1cae6f6c6d732ede5276bf4b9cd29b1d281678c054dc5cc009e",
     "https://deno.land/std@0.180.0/async/abortable.ts": "73acfb3ed7261ce0d930dbe89e43db8d34e017b063cf0eaa7d215477bf53442e",
