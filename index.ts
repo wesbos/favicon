@@ -17,7 +17,7 @@ export function makePng(emoji: string): Uint8Array {
 }
 
 const aliases = new Map([
-  ["favicon.ico", "/🚜"],
+  ["favicon.ico", "🚜"],
   ["wesbos", "🔥"]
 ]);
 
