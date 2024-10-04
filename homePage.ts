@@ -1,7 +1,10 @@
 import { getEmojiCounts } from './db.ts';
+
 const goodAssEmojis = ["💩", "🌶", "🔥", "🥰", "🖥", "👓"];
+const formatter = new Intl.NumberFormat("en-US");
 export async function makeHomePage() {
   const counts = await getEmojiCounts();
+  const totalCount = counts.reduce((acc, [_, count]) => acc + count, 0);
   return /*html*/ `
         <!DOCTYPE html>
         <html lang="en">
@@ -32,20 +35,25 @@ export async function makeHomePage() {
             &nbsp;&nbsp;cursor: url('https://fav.farm/🖕') 15 0, auto;<br>
           }</code>
 
-          <p>Stats!</p>
+          <p><strong>${formatter.format(totalCount)}</strong> Emoji Favicons Served!
+          <br>
+          <small>(since I started counting Oct 3, 2024)</small>
+        </p>
           <div class="stats">
           ${counts.map(([emoji, count]) => `<div class="stat">
-              <a href="/${emoji}"><span>${emoji} ${count}</span></a>
+              <a href="/${emoji}"><span>${emoji} ${formatter.format(count)}</span></a>
             </div>`).join("")}
           </div>
           <br>
 
 
-          <p><small>Made with 🖤 by <a href="https://twitter.com/wesbos">@wesbos</a>
-            -
+          <p><small>Made with 🖤 by <a href="https://x.com/wesbos">@wesbos</a>
+            ×
             <a href="https://github.com/wesbos/favicon">
               source 👩‍💻
             </a>
+            ×
+            Its TS + Deno
             </small>
           </p>
           <style>
