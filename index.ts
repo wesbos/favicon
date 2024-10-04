@@ -19,6 +19,7 @@ export function makePng(emoji: string): Uint8Array {
 
 function getEmojiFromPathname(pathname: string): string {
   const maybeEmojiPath =  decodeURIComponent(pathname.replace("/", ""));
+  if (maybeEmojiPath === 'favicon.ico') return "🚜";
   const emojis = maybeEmojiPath.match(emojiRegex());
   // If there are multiple emojis, just use the first one
   if(emojis?.length) {
