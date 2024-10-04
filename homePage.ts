@@ -74,6 +74,9 @@ export async function makeHomePage() {
               --rotate: -1deg;
               --scale: 1.1;
             }
+            a {
+              cursor: url('/👌?svg') 15 0, auto;
+            }
             p {
               max-width: 600px;
               margin: 0 auto;
