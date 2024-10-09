@@ -9,6 +9,7 @@ export async function makeHomePage() {
         <html lang="en">
         <head>
           <title>Emoji as Favicon - fav.farm</title>
+          <meta name="viewport" content="width=device-width, initial-scale=1">
           <link rel="icon" href="/🚜" />
         </head>
         <body>
