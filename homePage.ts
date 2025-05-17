@@ -1,6 +1,6 @@
 import { getEmojiCounts } from './db.ts';
 
-const goodAssEmojis = ["💩", "🌶", "🔥", "🥰", "🖥", "👓"];
+const goodAssEmojis = ["💩", "🌶", "🔥", "🥰", "🖥", "👓", "random"];
 const formatter = new Intl.NumberFormat("en-US");
 export async function makeHomePage() {
   const { topEmojis, countryEmojis, totalCount } = await getEmojiCounts();
