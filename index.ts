@@ -49,7 +49,7 @@ export function handlerSafari(request: Request): Response {
   });
 }
 
-export async function handler(request: Request): Response {
+export async function handler(request: Request): Promise<Response> {
   const url = new URL(request.url);
   if (url.pathname === "/") {
     return new Response(await makeHomePage(), {
