@@ -1,136 +1,131 @@
 {
-  "version": "3",
-  "packages": {
-    "specifiers": {
-      "jsr:@std/cli@^1.0.6": "jsr:@std/cli@1.0.6",
-      "jsr:@std/encoding@^1.0.5": "jsr:@std/encoding@1.0.5",
-      "jsr:@std/fmt@^1.0.2": "jsr:@std/fmt@1.0.2",
-      "jsr:@std/http@^1.0.7": "jsr:@std/http@1.0.7",
-      "jsr:@std/media-types@^1.0.3": "jsr:@std/media-types@1.0.3",
-      "jsr:@std/net@^1.0.4": "jsr:@std/net@1.0.4",
-      "jsr:@std/path@^1.0.6": "jsr:@std/path@1.0.6",
-      "jsr:@std/streams@^1.0.6": "jsr:@std/streams@1.0.6",
-      "npm:emoji-from-text": "npm:emoji-from-text@1.1.12",
-      "npm:emoji-from-text@^1.1.12": "npm:emoji-from-text@1.1.12",
-      "npm:emoji-regex": "npm:emoji-regex@10.3.0",
-      "npm:emoji-regex-xs": "npm:emoji-regex-xs@1.0.0",
-      "npm:emoji-regex@^10.4.0": "npm:emoji-regex@10.4.0"
+  "version": "5",
+  "specifiers": {
+    "jsr:@std/cli@^1.0.6": "1.0.6",
+    "jsr:@std/encoding@^1.0.5": "1.0.5",
+    "jsr:@std/fmt@^1.0.2": "1.0.2",
+    "jsr:@std/http@^1.0.7": "1.0.7",
+    "jsr:@std/media-types@^1.0.3": "1.0.3",
+    "jsr:@std/net@^1.0.4": "1.0.4",
+    "jsr:@std/path@^1.0.6": "1.0.6",
+    "jsr:@std/streams@^1.0.6": "1.0.6",
+    "npm:emoji-from-text@*": "1.1.12",
+    "npm:emoji-from-text@^1.1.12": "1.1.12",
+    "npm:emoji-regex-xs@*": "1.0.0",
+    "npm:emoji-regex@*": "10.3.0",
+    "npm:emoji-regex@^10.4.0": "10.4.0",
+    "npm:unicode-emoji-json@*": "0.8.0"
+  },
+  "jsr": {
+    "@std/cli@1.0.6": {
+      "integrity": "d22d8b38c66c666d7ad1f2a66c5b122da1704f985d3c47f01129f05abb6c5d3d"
     },
-    "jsr": {
-      "@std/cli@1.0.6": {
-        "integrity": "d22d8b38c66c666d7ad1f2a66c5b122da1704f985d3c47f01129f05abb6c5d3d"
-      },
-      "@std/encoding@1.0.5": {
-        "integrity": "ecf363d4fc25bd85bd915ff6733a7e79b67e0e7806334af15f4645c569fefc04"
-      },
-      "@std/fmt@1.0.2": {
-        "integrity": "87e9dfcdd3ca7c066e0c3c657c1f987c82888eb8103a3a3baa62684ffeb0f7a7"
-      },
-      "@std/http@1.0.7": {
-        "integrity": "9b904fc256678a5c9759f1a53a24a3fdcc59d83dc62099bb472683b6f819194c",
-        "dependencies": [
-          "jsr:@std/cli@^1.0.6",
-          "jsr:@std/encoding@^1.0.5",
-          "jsr:@std/fmt@^1.0.2",
-          "jsr:@std/media-types@^1.0.3",
-          "jsr:@std/net@^1.0.4",
-          "jsr:@std/path@^1.0.6",
-          "jsr:@std/streams@^1.0.6"
-        ]
-      },
-      "@std/media-types@1.0.3": {
-        "integrity": "b12d30a7852f7578f4d210622df713bbfd1cbdd9b4ec2eaf5c1845ab70bab159"
-      },
-      "@std/net@1.0.4": {
-        "integrity": "2f403b455ebbccf83d8a027d29c5a9e3a2452fea39bb2da7f2c04af09c8bc852"
-      },
-      "@std/path@1.0.6": {
-        "integrity": "ab2c55f902b380cf28e0eec501b4906e4c1960d13f00e11cfbcd21de15f18fed"
-      },
-      "@std/streams@1.0.6": {
-        "integrity": "022ed94e380d06b4d91c49eb70241b7289ab78b8c2b4c4bbb7eb265e4997c25c"
-      }
+    "@std/encoding@1.0.5": {
+      "integrity": "ecf363d4fc25bd85bd915ff6733a7e79b67e0e7806334af15f4645c569fefc04"
     },
-    "npm": {
-      "count-words-array@1.0.13": {
-        "integrity": "sha512-JuKzjvlvfUkFFsxnn8Wos+mlAYYhtInG2yDdtV3gtnDn67k0GmDX4VT6DwX/ovAaSYg3ByDIGN8t38/HeA3feg==",
-        "dependencies": {
-          "count-words": "count-words@1.0.13"
-        }
-      },
-      "count-words@1.0.13": {
-        "integrity": "sha512-udGVdXlyQAVcWXozUMSZ4GAbEpxHqvMVBeDDEYUuaDwCyz72XugSn3it1tWu/4pv+kY8PnC0OwzsZI3tCijuVQ==",
-        "dependencies": {
-          "set-or-get": "set-or-get@1.2.11",
-          "worder": "worder@1.1.1"
-        }
-      },
-      "deffy@2.2.4": {
-        "integrity": "sha512-pLc9lsbsWjr6RxmJ2OLyvm+9l4j1yK69h+TML/gUit/t3vTijpkNGh8LioaJYTGO7F25m6HZndADcUOo2PsiUg==",
-        "dependencies": {
-          "typpy": "typpy@2.3.13"
-        }
-      },
-      "emoji-from-text@1.1.12": {
-        "integrity": "sha512-z6+JGhFUak5xuztOdUnfSUS/TP83igYOpNTi1pYCZbO2GFOQkQiHYGuSsNntQD/TPWUkvu+g7IV3USqUX+pmOw==",
-        "dependencies": {
-          "count-words-array": "count-words-array@1.0.13",
-          "emoji-from-word": "emoji-from-word@1.2.12"
-        }
-      },
-      "emoji-from-word@1.2.12": {
-        "integrity": "sha512-xNIl/NflPD46iqbGyVj8U56rYW4i021rNHDYxEE3PSrnMpGxp9NxxedRqGsL1ol8z8taHF27TB9+mRbSFHSx5Q==",
-        "dependencies": {
-          "emojilib": "emojilib@1.1.0",
-          "iterate-object": "iterate-object@1.3.4"
-        }
-      },
-      "emoji-regex-xs@1.0.0": {
-        "integrity": "sha512-LRlerrMYoIDrT6jgpeZ2YYl/L8EulRTt5hQcYjy5AInh7HWXKimpqx68aknBFpGL2+/IcogTcaydJEgaTmOpDg==",
-        "dependencies": {}
-      },
-      "emoji-regex@10.3.0": {
-        "integrity": "sha512-QpLs9D9v9kArv4lfDEgg1X/gN5XLnf/A6l9cs8SPZLRZR3ZkY9+kwIQTxm+fsSej5UMYGE8fdoaZVIBlqG0XTw==",
-        "dependencies": {}
-      },
-      "emoji-regex@10.4.0": {
-        "integrity": "sha512-EC+0oUMY1Rqm4O6LLrgjtYDvcVYTy7chDnM4Q7030tP4Kwj3u/pR6gP9ygnp2CJMK5Gq+9Q2oqmrFJAz01DXjw==",
-        "dependencies": {}
-      },
-      "emojilib@1.1.0": {
-        "integrity": "sha512-OItSVrbYs38A8cbssqny5xH9qsyTzJ+vcTUjgwowlugmLOmOCceVMAraNcEle/6PuqI8J+wS70MzbbWRfW1cIQ==",
-        "dependencies": {}
-      },
-      "function.name@1.0.13": {
-        "integrity": "sha512-mVrqdoy5npWZyoXl4DxCeuVF6delDcQjVS9aPdvLYlBxtMTZDR2B5GVEQEoM1jJyspCqg3C0v4ABkLE7tp9xFA==",
-        "dependencies": {
-          "noop6": "noop6@1.0.9"
-        }
-      },
-      "iterate-object@1.3.4": {
-        "integrity": "sha512-4dG1D1x/7g8PwHS9aK6QV5V94+ZvyP4+d19qDv43EzImmrndysIl4prmJ1hWWIGCqrZHyaHBm6BSEWHOLnpoNw==",
-        "dependencies": {}
-      },
-      "noop6@1.0.9": {
-        "integrity": "sha512-DB3Hwyd89dPr5HqEPg3YHjzvwh/mCqizC1zZ8vyofqc+TQRyPDnT4wgXXbLGF4z9YAzwwTLi8pNLhGqcbSjgkA==",
-        "dependencies": {}
-      },
-      "set-or-get@1.2.11": {
-        "integrity": "sha512-CrJL6W4xE76UlRVfpKqp3HqSAZ2CV3Mi7UHYmi8yGeajwOAoc/YpJy+8Fvvtm4eJiPb0PoilKI84KAQoo8TZYQ==",
-        "dependencies": {
-          "deffy": "deffy@2.2.4"
-        }
-      },
-      "typpy@2.3.13": {
-        "integrity": "sha512-vOxIcQz9sxHi+rT09SJ5aDgVgrPppQjwnnayTrMye1ODaU8gIZTDM19t9TxmEElbMihx2Nq/0/b/MtyKfayRqA==",
-        "dependencies": {
-          "function.name": "function.name@1.0.13"
-        }
-      },
-      "worder@1.1.1": {
-        "integrity": "sha512-wul/ncEBQk01Dc8gqHsNkMeV7YvahUSRuXm60g+pbezuWskPy/CQZtAxmi6j+GWzTCQYjW8EvbVilpIBbm4gvA==",
-        "dependencies": {}
-      }
+    "@std/fmt@1.0.2": {
+      "integrity": "87e9dfcdd3ca7c066e0c3c657c1f987c82888eb8103a3a3baa62684ffeb0f7a7"
+    },
+    "@std/http@1.0.7": {
+      "integrity": "9b904fc256678a5c9759f1a53a24a3fdcc59d83dc62099bb472683b6f819194c",
+      "dependencies": [
+        "jsr:@std/cli",
+        "jsr:@std/encoding",
+        "jsr:@std/fmt",
+        "jsr:@std/media-types",
+        "jsr:@std/net",
+        "jsr:@std/path",
+        "jsr:@std/streams"
+      ]
+    },
+    "@std/media-types@1.0.3": {
+      "integrity": "b12d30a7852f7578f4d210622df713bbfd1cbdd9b4ec2eaf5c1845ab70bab159"
+    },
+    "@std/net@1.0.4": {
+      "integrity": "2f403b455ebbccf83d8a027d29c5a9e3a2452fea39bb2da7f2c04af09c8bc852"
+    },
+    "@std/path@1.0.6": {
+      "integrity": "ab2c55f902b380cf28e0eec501b4906e4c1960d13f00e11cfbcd21de15f18fed"
+    },
+    "@std/streams@1.0.6": {
+      "integrity": "022ed94e380d06b4d91c49eb70241b7289ab78b8c2b4c4bbb7eb265e4997c25c"
+    }
+  },
+  "npm": {
+    "count-words-array@1.0.13": {
+      "integrity": "sha512-JuKzjvlvfUkFFsxnn8Wos+mlAYYhtInG2yDdtV3gtnDn67k0GmDX4VT6DwX/ovAaSYg3ByDIGN8t38/HeA3feg==",
+      "dependencies": [
+        "count-words"
+      ]
+    },
+    "count-words@1.0.13": {
+      "integrity": "sha512-udGVdXlyQAVcWXozUMSZ4GAbEpxHqvMVBeDDEYUuaDwCyz72XugSn3it1tWu/4pv+kY8PnC0OwzsZI3tCijuVQ==",
+      "dependencies": [
+        "set-or-get",
+        "worder"
+      ]
+    },
+    "deffy@2.2.4": {
+      "integrity": "sha512-pLc9lsbsWjr6RxmJ2OLyvm+9l4j1yK69h+TML/gUit/t3vTijpkNGh8LioaJYTGO7F25m6HZndADcUOo2PsiUg==",
+      "dependencies": [
+        "typpy"
+      ]
+    },
+    "emoji-from-text@1.1.12": {
+      "integrity": "sha512-z6+JGhFUak5xuztOdUnfSUS/TP83igYOpNTi1pYCZbO2GFOQkQiHYGuSsNntQD/TPWUkvu+g7IV3USqUX+pmOw==",
+      "dependencies": [
+        "count-words-array",
+        "emoji-from-word"
+      ]
+    },
+    "emoji-from-word@1.2.12": {
+      "integrity": "sha512-xNIl/NflPD46iqbGyVj8U56rYW4i021rNHDYxEE3PSrnMpGxp9NxxedRqGsL1ol8z8taHF27TB9+mRbSFHSx5Q==",
+      "dependencies": [
+        "emojilib",
+        "iterate-object"
+      ]
+    },
+    "emoji-regex-xs@1.0.0": {
+      "integrity": "sha512-LRlerrMYoIDrT6jgpeZ2YYl/L8EulRTt5hQcYjy5AInh7HWXKimpqx68aknBFpGL2+/IcogTcaydJEgaTmOpDg=="
+    },
+    "emoji-regex@10.3.0": {
+      "integrity": "sha512-QpLs9D9v9kArv4lfDEgg1X/gN5XLnf/A6l9cs8SPZLRZR3ZkY9+kwIQTxm+fsSej5UMYGE8fdoaZVIBlqG0XTw=="
+    },
+    "emoji-regex@10.4.0": {
+      "integrity": "sha512-EC+0oUMY1Rqm4O6LLrgjtYDvcVYTy7chDnM4Q7030tP4Kwj3u/pR6gP9ygnp2CJMK5Gq+9Q2oqmrFJAz01DXjw=="
+    },
+    "emojilib@1.1.0": {
+      "integrity": "sha512-OItSVrbYs38A8cbssqny5xH9qsyTzJ+vcTUjgwowlugmLOmOCceVMAraNcEle/6PuqI8J+wS70MzbbWRfW1cIQ=="
+    },
+    "function.name@1.0.13": {
+      "integrity": "sha512-mVrqdoy5npWZyoXl4DxCeuVF6delDcQjVS9aPdvLYlBxtMTZDR2B5GVEQEoM1jJyspCqg3C0v4ABkLE7tp9xFA==",
+      "dependencies": [
+        "noop6"
+      ]
+    },
+    "iterate-object@1.3.4": {
+      "integrity": "sha512-4dG1D1x/7g8PwHS9aK6QV5V94+ZvyP4+d19qDv43EzImmrndysIl4prmJ1hWWIGCqrZHyaHBm6BSEWHOLnpoNw=="
+    },
+    "noop6@1.0.9": {
+      "integrity": "sha512-DB3Hwyd89dPr5HqEPg3YHjzvwh/mCqizC1zZ8vyofqc+TQRyPDnT4wgXXbLGF4z9YAzwwTLi8pNLhGqcbSjgkA=="
+    },
+    "set-or-get@1.2.11": {
+      "integrity": "sha512-CrJL6W4xE76UlRVfpKqp3HqSAZ2CV3Mi7UHYmi8yGeajwOAoc/YpJy+8Fvvtm4eJiPb0PoilKI84KAQoo8TZYQ==",
+      "dependencies": [
+        "deffy"
+      ]
+    },
+    "typpy@2.3.13": {
+      "integrity": "sha512-vOxIcQz9sxHi+rT09SJ5aDgVgrPppQjwnnayTrMye1ODaU8gIZTDM19t9TxmEElbMihx2Nq/0/b/MtyKfayRqA==",
+      "dependencies": [
+        "function.name"
+      ]
+    },
+    "unicode-emoji-json@0.8.0": {
+      "integrity": "sha512-3wDXXvp6YGoKGhS2O2H7+V+bYduOBydN1lnI0uVfr1cIdY02uFFiEH1i3kE5CCE4l6UqbLKVmEFW9USxTAMD1g=="
+    },
+    "worder@1.1.1": {
+      "integrity": "sha512-wul/ncEBQk01Dc8gqHsNkMeV7YvahUSRuXm60g+pbezuWskPy/CQZtAxmi6j+GWzTCQYjW8EvbVilpIBbm4gvA=="
     }
   },
   "remote": {

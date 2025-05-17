@@ -3,6 +3,7 @@ import emojiRegex from 'npm:emoji-regex';
 import emojiFromText from 'npm:emoji-from-text';
 import { makeHomePage } from "./homePage.ts";
 import { incrementCount } from "./db.ts";
+import orderedEmoji from "npm:unicode-emoji-json/data-ordered-emoji.json" with { "type": "json" };
 const port = 8080;
 const font = await Deno.readFile("./NotoColorEmoji.ttf");
 
@@ -17,14 +18,15 @@ export function makePng(emoji: string): Uint8Array {
 }
 
 const aliases = new Map([
-  ["favicon.ico", "🚜"],
-  ["wesbos", "🔥"]
+  ["favicon.ico", () => "🚜"],
+  ["wesbos", () => "🔥"],
+  ["random", () => orderedEmoji[Math.floor(Math.random() * orderedEmoji.length)]]
 ]);
 
 function getEmojiFromPathname(pathname: string): string {
   const maybeEmojiPath = decodeURIComponent(pathname.replace("/", ""));
   const alias = aliases.get(maybeEmojiPath);
-  if(alias) return alias;
+  if (alias) return alias();
   const emojis = maybeEmojiPath.match(emojiRegex());
   // If there are multiple emojis, just use the first one
   if (emojis?.length) {
