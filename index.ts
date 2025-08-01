@@ -27,7 +27,7 @@ const aliases = new Map([
 function getEmojiFromPathname(pathname: string): string {
   const maybeEmojiPath = decodeURIComponent(pathname.replace("/", ""));
   const alias = aliases.get(maybeEmojiPath);
-  if(alias) return alias;
+  if (alias) return alias;
   const emojis = maybeEmojiPath.match(emojiRegex());
   // If there are multiple emojis, just use the first one
   if (emojis?.length) {
@@ -52,7 +52,7 @@ export function handlerSafari(request: Request): Response {
   });
 }
 
-export async function handler(request: Request): Response {
+export async function handler(request: Request): Promise<Response> {
   const url = new URL(request.url);
   if (url.pathname === "/") {
     return new Response(await makeHomePage(), {
