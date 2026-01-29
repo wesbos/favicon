@@ -32,7 +32,7 @@ export async function makeHomePage() {
           </p>
           <p >You can use it with CSS Cursors too!</p>
           <code style="text-align:left;" onClick="copyToClipboard(this)" tabIndex="0">a { <br>
-            &nbsp;&nbsp;cursor: url('https://fav.farm/🖕') 15 0, auto;<br>
+            &nbsp;&nbsp;cursor: url('https://fav.farm/👆') 15 0, auto;<br>
           }</code>
           <p><strong>${formatter.format(totalCount)}</strong> Emoji Favicons Served!
           <br>
@@ -64,7 +64,7 @@ export async function makeHomePage() {
           <style>
             body {
               font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', sans-serif; font-size: 20px; text-align: center;
-              cursor: url('/🖕?svg') 15 0, auto;
+              cursor: url('/👆?svg') 15 0, auto;
               min-height: 100vh;
             }
             code {

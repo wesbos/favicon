@@ -25,7 +25,7 @@ Also works with CSS:
 
 ```css
 a {
-  cursor: url("https://fav.farm/🖕") 15 0, auto;
+  cursor: url("https://fav.farm/👆") 15 0, auto;
 }
 ```
 
