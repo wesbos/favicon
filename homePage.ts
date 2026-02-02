@@ -1,6 +1,6 @@
 import { getEmojiCounts } from './db.ts';
 
-const goodAssEmojis = ["💩", "🌶", "🔥", "🥰", "🖥", "👓"];
+const goodAssEmojis = ["🐶", "🌶", "🔥", "🥰", "🖥", "👓"];
 const formatter = new Intl.NumberFormat("en-US");
 export async function makeHomePage() {
   const { topEmojis, countryEmojis, totalCount } = await getEmojiCounts();
@@ -8,18 +8,18 @@ export async function makeHomePage() {
         <!DOCTYPE html>
         <html lang="en">
         <head>
-          <title>Emoji as Favicon - fav.farm</title>
+          <title>Emoji as Favicon</title>
           <meta name="viewport" content="width=device-width, initial-scale=1">
-          <link rel="icon" href="/🚜" />
+          <link rel="icon" href="/🚜">
         </head>
         <body>
           <h1>I bet you need a quick favicon!!</h1>
           <p>This startup returns an emoji inside an SVG<br>so you can pop that sucker into a favicon.</p>
-          <p>Use it like <a href="/💩">/💩</a> or <a href="/poop">/poop</a></p>
+          <p>Use it like <a href="/🐶">/🐶</a> or <a href="/dog">/dog</a></p>
           ${
     goodAssEmojis.map((emoji) => `
             <p><code onClick="copyToClipboard(this)" tabIndex="0">
-              &#x3C;link rel=&#x22;icon&#x22; href="https://fav.farm/${emoji}" /&#x3E;
+              &#x3C;link rel=&#x22;icon&#x22; href="https://fav.mhciael.com/${emoji}"&#x3E;
             </code></p>
           `).join("")
   }
@@ -27,12 +27,12 @@ export async function makeHomePage() {
           <p>It works by serving up this SVG code: </p>
           <p class="small">
             <code onClick="copyToClipboard(this)" tabIndex="0">
-&#x3C;link rel=&#x22;icon&#x22; href="data:image/svg+xml,&lt;svg xmlns=&#39;http://www.w3.org/2000/svg&#39; width=&#39;48&#39; height=&#39;48&#39; viewBox=&#39;0 0 16 16&#39;&gt;&lt;text x=&#39;0&#39; y=&#39;14&#39;&gt;😽&lt;/text&gt;&lt;/svg&gt;" /&#x3E;
+&#x3C;link rel=&#x22;icon&#x22; href="data:image/svg+xml,&lt;svg xmlns=&#39;http://www.w3.org/2000/svg&#39; width=&#39;48&#39; height=&#39;48&#39; viewBox=&#39;0 0 16 16&#39;&gt;&lt;text x=&#39;0&#39; y=&#39;14&#39;&gt;😽&lt;/text&gt;&lt;/svg&gt;"&#x3E;
             </code>
           </p>
           <p >You can use it with CSS Cursors too!</p>
           <code style="text-align:left;" onClick="copyToClipboard(this)" tabIndex="0">a { <br>
-            &nbsp;&nbsp;cursor: url('https://fav.farm/👆') 15 0, auto;<br>
+            &nbsp;&nbsp;cursor: url('https://fav.mhciael.com/👆') 15 0, auto;<br>
           }</code>
           <p><strong>${formatter.format(totalCount)}</strong> Emoji Favicons Served!
           <br>
@@ -44,7 +44,7 @@ export async function makeHomePage() {
             </div>`).join("")}
           </div>
           <br>
-          <p>Top Country Emojis used <br><small>(you guys are so silly gaming these numbers)</small></p>
+          <p>Top Country Emojis used <br><small>(y'all're so silly gaming these numbers)</small></p>
           <div class="stats">
           ${countryEmojis.map(([emoji, count]) => `<div class="stat">
               <a href="/${emoji}"><span>${emoji} ${formatter.format(count)}</span></a>
@@ -57,10 +57,11 @@ export async function makeHomePage() {
             <a href="https://github.com/wesbos/favicon">
               source 👩‍💻
             </a>
-            ×
+            x
             Its TS + Deno
             </small>
           </p>
+          <p><small>(middle finger removed by <a href="https://hcientist.com">Dr.&nbsp;Stewart&nbsp;😆</a> for <a href="https://w3.cs.jmu.edu/cs343">CS&nbsp;343</a>)</small></p>
           <style>
             body {
               font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', sans-serif; font-size: 20px; text-align: center;
@@ -84,7 +85,7 @@ export async function makeHomePage() {
               cursor: url('/👌?svg') 25 25, auto;
             }
             p {
-              max-width: 600px;
+              max-width: 40rem;
               margin: 0 auto;
               line-height: 2;
               margin-bottom: 20px;
