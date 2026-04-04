@@ -1,9 +1,16 @@
-import { getEmojiCounts } from './db.ts';
+import {
+  getEmojiCounts,
+  getTopRequestSources,
+  type CloudflareEnv,
+  type PerfLogContext,
+} from "./db";
 
 const goodAssEmojis = ["💩", "🌶", "🔥", "🥰", "🖥", "👓"];
 const formatter = new Intl.NumberFormat("en-US");
-export async function makeHomePage() {
-  const { topEmojis, countryEmojis, totalCount } = await getEmojiCounts();
+
+export async function makeHomePage(env: CloudflareEnv, perf: PerfLogContext = {}) {
+  const { topEmojis, countryEmojis, totalCount } = await getEmojiCounts(env, perf);
+  const { topCountries, topReferrers, topGeoBuckets } = await getTopRequestSources(env, perf);
   return /*html*/ `
         <!DOCTYPE html>
         <html lang="en">
@@ -16,13 +23,15 @@ export async function makeHomePage() {
           <h1>I bet you need a quick favicon!!</h1>
           <p>This startup returns an emoji inside an SVG<br>so you can pop that sucker into a favicon.</p>
           <p>Use it like <a href="/💩">/💩</a> or <a href="/poop">/poop</a></p>
-          ${
-    goodAssEmojis.map((emoji) => `
+          ${goodAssEmojis
+            .map(
+              (emoji) => `
             <p><code onClick="copyToClipboard(this)" tabIndex="0">
               &#x3C;link rel=&#x22;icon&#x22; href="https://fav.farm/${emoji}" /&#x3E;
             </code></p>
-          `).join("")
-  }
+          `,
+            )
+            .join("")}
           <br>
           <p>It works by serving up this SVG code: </p>
           <p class="small">
@@ -39,16 +48,67 @@ export async function makeHomePage() {
           <small>(since I started counting Oct 3, 2024)</small>
         </p>
           <div class="stats">
-          ${topEmojis.map(([emoji, count]) => `<div class="stat">
-              <a href="/${emoji}"><span>${emoji} ${formatter.format(count)}</span></a>
-            </div>`).join("")}
+          ${topEmojis
+            .map(
+              ([emoji, count]) => `<div class="stat">
+              <a href="/${emoji}">
+                <span class="emoji">${emoji}</span>
+                <span class="count">${formatter.format(count)}</span>
+              </a>
+            </div>`,
+            )
+            .join("")}
           </div>
           <br>
           <p>Top Country Emojis used <br><small>(you guys are so silly gaming these numbers)</small></p>
           <div class="stats">
-          ${countryEmojis.map(([emoji, count]) => `<div class="stat">
-              <a href="/${emoji}"><span>${emoji} ${formatter.format(count)}</span></a>
-            </div>`).join("")}
+          ${countryEmojis
+            .map(
+              ([emoji, count]) => `<div class="stat">
+              <a href="/${emoji}">
+                <span class="emoji">${emoji}</span>
+                <span class="count">${formatter.format(count)}</span>
+              </a>
+            </div>`,
+            )
+            .join("")}
+          </div>
+          <br>
+          <p>Where favicon requests are coming from</p>
+          <div class="source-columns">
+            <div class="source-column">
+              <h3>Top Countries</h3>
+              ${topCountries
+                .map(
+                  ([country, count]) => `<div class="source-row">
+                    <span>${country}</span>
+                    <strong>${formatter.format(count)}</strong>
+                  </div>`,
+                )
+                .join("")}
+            </div>
+            <div class="source-column">
+              <h3>Top Referrers</h3>
+              ${topReferrers
+                .map(
+                  ([referrer, count]) => `<div class="source-row">
+                    <span>${referrer}</span>
+                    <strong>${formatter.format(count)}</strong>
+                  </div>`,
+                )
+                .join("")}
+            </div>
+            <div class="source-column">
+              <h3>Top Geo Buckets</h3>
+              ${topGeoBuckets
+                .map(
+                  ([bucket, count]) => `<div class="source-row">
+                    <span>${bucket}</span>
+                    <strong>${formatter.format(count)}</strong>
+                  </div>`,
+                )
+                .join("")}
+            </div>
           </div>
 
 
@@ -58,7 +118,7 @@ export async function makeHomePage() {
               source 👩‍💻
             </a>
             ×
-            Its TS + Deno
+            Its TS + Cloudflare Workers
             </small>
           </p>
           <style>
@@ -66,7 +126,6 @@ export async function makeHomePage() {
               font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', sans-serif; font-size: 20px; text-align: center;
               cursor: url('/🖕?svg') 15 0, auto;
               min-height: 100vh;
-              overflow-x: auto;
             }
             code {
               background: white;
@@ -97,11 +156,12 @@ export async function makeHomePage() {
               font-size: 13px;
             }
             .stats {
-              display: flex;
+              display: grid;
+              grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
               justify-content: center;
               flex-wrap: wrap;
               gap: 5px;
-              max-width: 800px;
+              max-width: 1200px;
               margin: 20px auto;
             }
             .stat {
@@ -109,7 +169,43 @@ export async function makeHomePage() {
               padding: 4px 4px;
               line-height: 1;
               border-radius: 10px;
-
+              a {
+                text-decoration: none;
+              }
+              .emoji {
+                font-size: 35px;
+                display: block;
+              }
+              .count {
+                font-size: 12px;
+                color: #666;
+              }
+            }
+            .source-columns {
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+              gap: 20px;
+              max-width: 900px;
+              margin: 20px auto;
+              text-align: left;
+            }
+            .source-column h3 {
+              margin-bottom: 8px;
+            }
+            .source-row {
+              display: flex;
+              justify-content: space-between;
+              gap: 8px;
+              padding: 6px 8px;
+              margin-bottom: 4px;
+              background: #f7f7f7;
+              border-radius: 8px;
+              font-size: 14px;
+            }
+            .source-row span {
+              overflow: hidden;
+              text-overflow: ellipsis;
+              white-space: nowrap;
             }
           </style>
           <script>
