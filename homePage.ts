@@ -66,6 +66,7 @@ export async function makeHomePage() {
               font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', sans-serif; font-size: 20px; text-align: center;
               cursor: url('/🖕?svg') 15 0, auto;
               min-height: 100vh;
+              overflow-x: auto;
             }
             code {
               background: white;
@@ -74,6 +75,9 @@ export async function makeHomePage() {
               --rotate: 0;
               transform: scale(var(--scale)) rotate(var(--rotate));
               display: inline-block;
+              overflow-wrap: break-word;
+              max-width: 100%;
+              box-sizing: border-box;
             }
             code.hl {
               background: #f9f9ae;
